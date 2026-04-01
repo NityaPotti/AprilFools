@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>System Scan</title>
+<style>
+    body {
+        background-color: black;
+        color: #00ff00;
+        font-family: "Courier New", monospace;
+        font-size: 18px;
+        padding: 20px;
+    }
+    #terminal {
+        white-space: pre-line;
+    }
+    .cursor {
+        display: inline-block;
+        width: 10px;
+        background-color: #00ff00;
+        animation: blink 1s infinite;
+    }
+    @keyframes blink {
+        0%, 50%, 100% { opacity: 1; }
+        25%, 75% { opacity: 0; }
+    }
+</style>
+</head>
+<body>
+
+<div id="terminal"></div><span class="cursor"></span>
+
+<script>
+const lines = [
+    "Initializing secure connection...",
+    "Bypassing firewall...",
+    "Access granted.",
+    "",
+    "Scanning network...",
+    "Found",
+    "",
+    "Extracting secrets...",
+    "",
+    "Searching browser history...",
+    "Analyzing data...",
+    "",
+    "⚠️ Sensitive information found ⚠️",
+    "",
+    "Favorite child: NITYA",
+    "",
+    "Happy April Fools"
+];
+
+let i = 0;
+let j = 0;
+const speed = 40;
+const terminal = document.getElementById("terminal");
+
+function typeLine() {
+    if (i < lines.length) {
+        if (j < lines[i].length) {
+            terminal.innerHTML += lines[i].charAt(j);
+            j++;
+            setTimeout(typeLine, speed); //wait speed ms and then execute typeLine
+        } else {
+            terminal.innerHTML += "\n";
+            i++;
+            j = 0;
+            setTimeout(typeLine, 400);
+        }
+    }
+}
+
+typeLine();
+</script>
+
+</body>
+</html>
